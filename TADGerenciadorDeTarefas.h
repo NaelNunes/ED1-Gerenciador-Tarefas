@@ -3,9 +3,9 @@
 struct TpTarefas
 {
 	int tipo; // 1, 2 ou 3 para o nivel de prioridade
-	int tempoConc; // Tempo de conclus„o estimado
+	int tempoConc; // Tempo de conclus√£o estimado
 	char nomeTarefa[40]; // Nome da tarefa
-	char devResp[20]; // Desenvolvedor Respons·vel
+	char devResp[20]; // Desenvolvedor Respons√°vel
 	char dataIni[9]; // Data do inicio
 }
 
@@ -45,9 +45,18 @@ char Cheia(int FIM)
 	return FIM == MAXFILA - 1;
 }
 
-TpElemento Retirar(TpFila &FP)
+TpTarefas Retirar(TpFila &FP)
 {
-	return FP.FILAP[0];
+    TpTarefas Elem = FP.FILAP[0];  
+
+    for (int i = 0; i < FP.FIM; i++)
+    {
+        FP.FILAP[i] = FP.FILAP[i + 1];
+    }
+
+    FP.FIM--;
+    
+    return Elem;  
 }
 
 void Exibir(TpFila FP)
