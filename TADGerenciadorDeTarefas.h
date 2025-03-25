@@ -36,7 +36,7 @@ struct TpDev{
 
 
 
-//Opera��es Associadas
+//Operações Associadas
 void Inicializar(TpFila &F);
 void Insere(TpFila &F, TpTarefas Reg);
 TpTarefas Retirar(TpFila &F);
@@ -85,6 +85,9 @@ void Insere(TpFila &F, TpTarefas Reg)
 				F.FILA[i + 1] = F.FILA[i];
 			i--;
 		}
+		/*eu não entendi esse i>0
+		Outra coisa ainda nao sei pq,
+		mas não tá fazendo prioridade com primeiro da fila*/
 		if(i > 0 && strcmp(F.FILA[i-1].tipo, Reg.tipo) > 0)
 		{
 			F.FILA[i + 1] = F.FILA[i];
@@ -122,12 +125,12 @@ char FilaCheia(int Qtde)
 }
 
 
-
-/*void Exibir(TpFila F)
+//Esse Exibir é para ir exibindo a fila
+void Exibir(TpFila F)
 {
 	while(!FilaVazia(F.Qtde))
 	{
 		TpTarefas e = Retirar(F);
-		printf("Elemento: %c\t Prioridade: %d\n",e.dado,e.Prioridade);
+		printf("%s \t%d \t%s\n",e.tipo,e.tempoConc,e.nomeTarefa);
 	}
-}*/
+}
