@@ -30,8 +30,8 @@ struct TpDev{
 
 
 // Escopo para arquivo
-FILE* AbreArquivo(void);
-TpTarefas LerArquivo(FILE *Ptr);
+//FILE* AbreArquivo(void);
+//TpTarefas LerArquivo(FILE *Ptr);
 //
 
 
@@ -74,7 +74,7 @@ void Insere(TpFila &F, TpTarefas Reg)
 	if(F.Qtde != MAXFILA)
 	{
 		i = F.Fim;
-		while(i != F.Inicio && F.FILA[i].tipo > Reg.tipo)
+		while(i != F.Inicio && strcmp(F.FILA[i].tipo, Reg.tipo) > 0) // ESTAVA USANDO < PARA COMPARAR STRING BIXAAAAA (ARRUMADO)
 		{
 			if(i == 0)
 			{
@@ -85,7 +85,7 @@ void Insere(TpFila &F, TpTarefas Reg)
 				F.FILA[i + 1] = F.FILA[i];
 			i--;
 		}
-		if(F.FILA[i-1].tipo > Reg.tipo)
+		if(i > 0 && strcmp(F.FILA[i-1].tipo, Reg.tipo) > 0)
 		{
 			F.FILA[i + 1] = F.FILA[i];
 			i--;
@@ -107,6 +107,7 @@ TpTarefas Retirar(TpFila &F)
 	else
 		F.Inicio++;
 	F.Qtde--;
+	
 	return Aux;	
 }
 

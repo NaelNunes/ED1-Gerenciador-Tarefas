@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <ctype.h>
 #include <string.h>
+#include <conio.h>
 #include "TADGerenciadorDeTarefas.h"
 
 void InterfaceMenu(void)
@@ -27,9 +28,11 @@ int main()
 		TpFila RegFila;
 		int cont, i, pos;
 		float media;	
-		FILE *Ptr = AbreArquivo();
+		FILE *Ptr = fopen("DadoArquivo.txt","r");
 		int limiteDev;
 		int duracaoTempo, Cont_1_Task = 0, Cont_2_Task = 0, Cont_3_Task = 0, Som_1_Task = 0, Som_2_Task = 0, Som_3_Task = 0;
+		
+		TpTarefas RegTarefa;
 		
 		printf("Digite o numero de devs: ");
 		scanf("%d", &limiteDev);
@@ -40,14 +43,14 @@ int main()
 		for(cont = 0; cont < duracaoTempo; cont++)
 		{
 			
-			fscanf(Ptr,"%[^,],%d,%[^,],%[^,],%s\n", RegFila.FILA[RegFila.Fim].tipo, RegFila.FILA[RegFila.Fim].tempoConc, RegFila.FILA[RegFila.Fim].nomeTarefa, RegFila.FILA[RegFila.Fim].devResp, RegFila.FILA[RegFila.Fim].dataIni);
+			fscanf(Ptr,"%[^,],%d,%[^,],%[^,],%s\n", RegTarefa.tipo, RegTarefa.tempoConc, RegTarefa.nomeTarefa, RegTarefa.devResp, RegTarefa.dataIni);
 			RegFila.FILA[RegFila.Qtde].in_time = cont;
-			Insere(RegFila, RegFila.FILA[RegFila.Qtde]);
+			Insere(RegFila, RegTarefa); // ESTAVA INSERINDO ERRADO VITOR VIADO
 			pos = CheckDevs(RegDev, limiteDev);
 			if(pos != -1)//Caso haja Devs disponíveis
 			{
-				RegDev[i] = RegFila.FILA[RegFila.Inicio];
-				RegDev[i].status = 1;	
+				RegDev[pos].Tarefa_Dev = Retirar(RegFila); // TEM QUE RETIRAR DA FILA E JOGAR PRO DEVVVVVVVVVVV (ARRUMEI) !!!
+				RegDev[pos].status = 1;	
 			}
 			
 			for(i = 0; i < limiteDev; i++)//Decrementar tempo da tarefa
@@ -59,24 +62,24 @@ int main()
 					RegDev[i].Tarefa_Dev.tempoConc--;
 					if(RegDev[i].Tarefa_Dev.tempoConc == 0)
 						{
-						RegDev[i].status = 0;
-						RegDev[i].Tarefa_Dev.Out_time = cont;
-							if(strcmp(RegDev[i].Tarefa_Dev.tipo == "Critico"))
+							RegDev[i].status = 0;
+							RegDev[i].Tarefa_Dev.Out_time = cont;
+							if(strcmp(RegDev[i].Tarefa_Dev.tipo,"Critico") == 0)
 								{
-								Cont_1_Task++;
-								Som_1_Task += (RegDev[i].Tarefa_Dev.Out_time - RegDev[i].Tarefa_Dev.in_time);
+									Cont_1_Task++;
+									Som_1_Task += (RegDev[i].Tarefa_Dev.Out_time - RegDev[i].Tarefa_Dev.in_time);
 								}
 							
-							else if(strcmp(RegDev[i].Tarefa_Dev.tipo == "Importante"))
+							else if(strcmp(RegDev[i].Tarefa_Dev.tipo,"Importante") == 0)
 								{
-								Cont_2_Task++;
-								Som_2_Task += (RegDev[i].Tarefa_Dev.Out_time - RegDev[i].Tarefa_Dev.in_time);
+									Cont_2_Task++;
+									Som_2_Task += (RegDev[i].Tarefa_Dev.Out_time - RegDev[i].Tarefa_Dev.in_time);
 								}
 							
 							else
 								{
-								Cont_3_Task++;
-								Som_3_Task += (RegDev[i].Tarefa_Dev.Out_time - RegDev[i].Tarefa_Dev.in_time);
+									Cont_3_Task++;
+									Som_3_Task += (RegDev[i].Tarefa_Dev.Out_time - RegDev[i].Tarefa_Dev.in_time);
 								}
 							
 						}
@@ -85,17 +88,30 @@ int main()
 		}	
 			
 	
-		
-		printf("Tempo medio das Tarefas Critico = %.2f\n", media = Som_1_Task/Cont_1_Task*1.0);
-		printf("Tempo medio das Tarefas Importante = %.2f\n", media = Som_2_Task/Cont_2_Task*1.0);
-		printf("Tempo medio das Tarefas Melhoria = %.2f\n", media = Som_3_Task/Cont_3_Task*1.0);
+		// CASO NAO TENHA TASK SEJA 0 ELE NAO DIVIDE PODE DAR ERRO (ARRUMADO)
+		if (Cont_1_Task > 0) {
+    		printf("Tempo medio das Tarefas Critico = %.2f\n", (float)Som_1_Task / Cont_1_Task);
+		} else {
+    		printf("Nenhuma tarefa Critico foi realizada.\n");
+		}
+
+		if (Cont_2_Task > 0) {
+    		printf("Tempo medio das Tarefas Importante = %.2f\n", (float)Som_2_Task / Cont_2_Task);
+		} else {
+    		printf("Nenhuma tarefa Importante foi realizada.\n");
+		}	
+
+		if (Cont_3_Task > 0) {
+    		printf("Tempo medio das Tarefas Melhoria = %.2f\n", (float)Som_3_Task / Cont_3_Task);
+		} else {
+    		printf("Nenhuma tarefa Melhoria foi realizada.\n");
+		}
 		
 		
 		printf("Deseja realizar outra simulacao? (S/N)");
-	} while(toupper(getch()) == 'S');
+		fclose(Ptr); // FALTOU FECHAR 
+	} while(toupper(getche()) == 'S');
 	
-		
-	
-	
+			
 	return 0;
 }
