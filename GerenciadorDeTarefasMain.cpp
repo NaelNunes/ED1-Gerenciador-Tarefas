@@ -40,15 +40,14 @@ int main()
 		for(cont = 0; cont < duracaoTempo; cont++)
 		{
 			
-			fscanf(Ptr,"%[^,],%d,%[^,],%[^,],%s\n", RegFila.FILA[RegFila.Qtde].tipo, RegFila.FILA[RegFila.Qtde].tempoConc, RegFila.FILA[RegFila.Qtde].nomeTarefa, RegFila.FILA[RegFila.Qtde].devResp, RegFila.FILA[RegFila.Qtde].dataIni);
+			fscanf(Ptr,"%[^,],%d,%[^,],%[^,],%s\n", RegFila.FILA[RegFila.Fim].tipo, RegFila.FILA[RegFila.Fim].tempoConc, RegFila.FILA[RegFila.Fim].nomeTarefa, RegFila.FILA[RegFila.Fim].devResp, RegFila.FILA[RegFila.Fim].dataIni);
 			RegFila.FILA[RegFila.Qtde].in_time = cont;
 			Insere(RegFila, RegFila.FILA[RegFila.Qtde]);
 			pos = CheckDevs(RegDev, limiteDev);
 			if(pos != -1)//Caso haja Devs disponíveis
 			{
-				RegDev[i] = 	
-				
-				
+				RegDev[i] = RegFila.FILA[RegFila.Inicio];
+				RegDev[i].status = 1;	
 			}
 			
 			for(i = 0; i < limiteDev; i++)//Decrementar tempo da tarefa
