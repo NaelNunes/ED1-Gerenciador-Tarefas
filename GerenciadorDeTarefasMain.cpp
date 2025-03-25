@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <conio.h>
+#include <time.h>
 #include "TADGerenciadorDeTarefas.h"
 
 void InterfaceMenu(void)
@@ -26,13 +27,13 @@ int main()
 	do
 	{
 		TpFila RegFila;
-		int cont, i, pos;
-		float media;	
-		FILE *Ptr = fopen("DadoArquivo.txt","r");
-		int limiteDev;
-		int duracaoTempo, Cont_1_Task = 0, Cont_2_Task = 0, Cont_3_Task = 0, Som_1_Task = 0, Som_2_Task = 0, Som_3_Task = 0;
-		
 		TpTarefas RegTarefa;
+		int cont, i, pos, limiteDev;
+		int duracaoTempo, Cont_1_Task = 0, Cont_2_Task = 0, Cont_3_Task = 0, Som_1_Task = 0, Som_2_Task = 0, Som_3_Task = 0;
+		float media;
+		Inicializar(RegFila);
+		srand(time(NULL));// Sempre sortear novos numeros	
+		FILE *Ptr = fopen("DadoArquivo.txt","r");
 		
 		printf("Digite o numero de devs: ");
 		scanf("%d", &limiteDev);
@@ -42,12 +43,14 @@ int main()
 		 
 		for(cont = 0; cont < duracaoTempo; cont++)
 		{
-			
-			fscanf(Ptr,"%[^,],%d,%[^,],%[^,],%s\n", RegTarefa.tipo, RegTarefa.tempoConc, RegTarefa.nomeTarefa, RegTarefa.devResp, RegTarefa.dataIni);
-			RegFila.FILA[RegFila.Qtde].in_time = cont;
-			Insere(RegFila, RegTarefa); // ESTAVA INSERINDO ERRADO VITOR VIADO
+			if(rand() % 2 == 0) // sortear se vai entrar ou nao nesse loop
+			{
+				fscanf(Ptr,"%[^,],%d,%[^,],%[^,],%s\n", &RegTarefa.tipo, &RegTarefa.tempoConc, &RegTarefa.nomeTarefa, &RegTarefa.devResp, &RegTarefa.dataIni);
+				RegTarefa.in_time = cont;
+				Insere(RegFila, RegTarefa); // ESTAVA INSERINDO ERRADO VITOR VIADO
+			}
 			pos = CheckDevs(RegDev, limiteDev);
-			if(pos != -1)//Caso haja Devs disponíveis
+			if(pos != -1)//Caso haja Devs disponÃ­veis
 			{
 				RegDev[pos].Tarefa_Dev = Retirar(RegFila); // TEM QUE RETIRAR DA FILA E JOGAR PRO DEVVVVVVVVVVV (ARRUMEI) !!!
 				RegDev[pos].status = 1;	
