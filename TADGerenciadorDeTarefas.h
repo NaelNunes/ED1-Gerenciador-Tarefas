@@ -3,7 +3,7 @@
 struct TpTarefas{
 	char tipo[12]; // 1, 2 ou 3 para o nivel de prioridade
 	int tempoConc; // Tempo de conclusao estimado
-	char nomeTarefa[40]; // Nome da tarefa
+	char nomeTarefa[50]; // Nome da tarefa
 	char devResp[20]; // Desenvolvedor Responsavel
 	char dataIni[11]; // Data do inicio
 	int in_time, Out_time;
@@ -58,7 +58,10 @@ int CheckDevs(TpDev RegDev[], int limiteDev){
 	int i = 0;
 	
 	while(i < limiteDev && RegDev[i].status == 1)
+	{
 		i++;
+	}
+		
 		
 		
 	if(i < limiteDev)
@@ -101,6 +104,8 @@ void Insere(TpFila &F, TpTarefas Reg)
 	}
 }
 
+
+
 TpTarefas Retirar(TpFila &F)
 {
 	TpTarefas Aux;
@@ -128,9 +133,17 @@ char FilaCheia(int Qtde)
 //Esse Exibir é para ir exibindo a fila
 void Exibir(TpFila F)
 {
-	while(!FilaVazia(F.Qtde))
-	{
-		TpTarefas e = Retirar(F);
-		printf("%s \t%d \t%s\n",e.tipo,e.tempoConc,e.nomeTarefa);
-	}
+    int i = F.Inicio;
+    int count = F.Qtde;
+    
+    while(count > 0) 
+    {
+        printf("%s \t%d \t%s\n", F.FILA[i].tipo, F.FILA[i].tempoConc, F.FILA[i].nomeTarefa);
+        Sleep(200);
+        i++;
+        if (i == MAXFILA) {
+            i = 0;
+        }
+        count--;
+    }
 }
