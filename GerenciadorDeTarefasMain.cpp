@@ -22,14 +22,23 @@ void Simulacao(TpFila &RegFila, FILE *Ptr)
 	
 }
 
+void NomeiaDevs(TpDev RegDev[], int limiteDev)
+{
+	char *nomesDev[10] = {
+        "Nathanael", "Vitor", "Felipe", "Willian", "Leandro",
+        "Haroldo", "Silvio Antonio", "João Cezario", "Flavio", "Francisco"
+    };
+    
+	for(int i = 0; i < limiteDev; i++)
+	{
+		strcpy(RegDev[i].Nome,nomesDev[i]);
+	}
+}
+
 int main()
 {
 	do
 	{
-		char *nomesDev[10] = {
-        "Alice", "Bob", "Carlos", "Diana", "Eduardo",
-        "Fernanda", "Gustavo", "Helena", "Igor", "Juliana"
-    	};
 		TpFila RegFila;
 		TpTarefas RegTarefa;
 		int cont, i, pos, limiteDev;
@@ -42,22 +51,37 @@ int main()
 		printf("Digite o numero de devs: ");
 		scanf("%d", &limiteDev);
 		TpDev RegDev[limiteDev];
+		NomeiaDevs(RegDev,limiteDev);
 		printf("Digite o tempo maximo de simulacao: ");
 		scanf("%d", &duracaoTempo);
 		 
 		for(cont = 0; cont < duracaoTempo; cont++)
 		{
+			printf("\n\nTarefas sendo executadas: \n\n");
+			for(int y = 0; y < limiteDev; y++)
+			{
+				if(RegDev[y].status == 1 && RegDev[y].Tarefa_Dev.tempoConc > 0)
+				{
+						Sleep(500);
+						printf("Dev - %s: %s - Tempo Restante: %d\n", RegDev[y].Nome, RegDev[y].Tarefa_Dev.nomeTarefa, RegDev[y].Tarefa_Dev.tempoConc);
+				}
+			}
+		
+			printf("\n\nTarefas na fila: \n\n");
+			if(!FilaVazia(RegFila.Qtde))
+			{
+				Exibir(RegFila);
+			}
 			//if(rand() % 2 == 0) // sortear se vai entrar ou nao nesse loop
 			//{
 				fscanf(Ptr,"%[^,],%d,%[^,],%[^,],%s\n", &RegTarefa.tipo, &RegTarefa.tempoConc, &RegTarefa.nomeTarefa, &RegTarefa.devResp, &RegTarefa.dataIni);
 				RegTarefa.in_time = cont;
-				Insere(RegFila, RegTarefa); // ESTAVA INSERINDO ERRADO VITOR VIADO
+				Insere(RegFila, RegTarefa); 
 			//}
-			pos = CheckDevs(RegDev, limiteDev);
+			pos = CheckDevs(RegDev[limiteDev], limiteDev);
 			if(pos != -1)//Caso haja Devs disponiveis
 			{
-				strcpy(RegDev[pos].Nome,nomesDev[rand() % 10]);
-				RegDev[pos].Tarefa_Dev = Retirar(RegFila); // TEM QUE RETIRAR DA FILA E JOGAR PRO DEVVVVVVVVVVV (ARRUMEI) !!!
+				RegDev[pos].Tarefa_Dev = Retirar(RegFila);
 				RegDev[pos].status = 1;	
 			}
 						
@@ -65,8 +89,8 @@ int main()
 				{
 			
 				if(RegDev[i].status == 1)
-					{
-				
+				{
+					
 					RegDev[i].Tarefa_Dev.tempoConc--;
 					if(RegDev[i].Tarefa_Dev.tempoConc == 0)
 						{
@@ -93,22 +117,7 @@ int main()
 						}
 					}
 				}
-				printf("\n\nTarefas sendo executadas: \n\n");
-				for(int y = 0; y < limiteDev; y++)
-				{
-					if(RegDev[y].status == 1 && RegDev[y].Tarefa_Dev.tempoConc > 0)
-					{
-						Sleep(500);
-						printf("Dev - %s: %s - Tempo Restante: %d\n", RegDev[y].Nome, RegDev[y].Tarefa_Dev.nomeTarefa, RegDev[y].Tarefa_Dev.tempoConc);
-					}
-				}
-		
-				printf("\n\nTarefas na fila: \n\n");
-				if(!FilaVazia(RegFila.Qtde))
-				{
-					Exibir(RegFila);
-				}
-				Sleep(2000);
+				getch();
 				system("cls");
 				
 		}	

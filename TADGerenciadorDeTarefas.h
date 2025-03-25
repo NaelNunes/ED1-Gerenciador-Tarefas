@@ -62,8 +62,6 @@ int CheckDevs(TpDev RegDev[], int limiteDev){
 		i++;
 	}
 		
-		
-		
 	if(i < limiteDev)
 		return i;
 	else
@@ -91,7 +89,7 @@ void Insere(TpFila &F, TpTarefas Reg)
 		/*eu não entendi esse i>0
 		Outra coisa ainda nao sei pq,
 		mas não tá fazendo prioridade com primeiro da fila*/
-		if(i > 0 && strcmp(F.FILA[i-1].tipo, Reg.tipo) > 0)
+		if(i == F.Inicio && strcmp(F.FILA[i].tipo, Reg.tipo) > 0)
 		{
 			F.FILA[i + 1] = F.FILA[i];
 			i--;
@@ -103,8 +101,6 @@ void Insere(TpFila &F, TpTarefas Reg)
     	F.Qtde++;
 	}
 }
-
-
 
 TpTarefas Retirar(TpFila &F)
 {
