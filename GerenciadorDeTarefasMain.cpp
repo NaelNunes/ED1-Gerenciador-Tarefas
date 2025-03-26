@@ -90,8 +90,7 @@ void NomeiaDevs(TpDev RegDev[], int limiteDev)
 
 int main()
 {
-	do
-	{
+
 		TpFila RegFila;
 		TpTarefas RegTarefa;
 		int cont, i, y, pos, limiteDev, DevsOcupados = 0, Linha, Coluna;
@@ -99,7 +98,7 @@ int main()
 		float media;
 		Inicializar(RegFila);
 		srand(time(NULL));// Sempre sortear novos numeros	
-		FILE *Ptr = fopen("DadoArquivo.txt","r");
+		FILE *Ptr = fopen("DadoArquivoAumentado.txt","r");
 		Moldura(28,9,71,19,3,0,201,187,200,188);
 		gotoxy(31,10);
 		textcolor(13);
@@ -128,7 +127,7 @@ int main()
 		textcolor(7);
 		scanf("%d", &duracaoTempo);
 		 
-		for(cont = 0; cont < duracaoTempo; cont++)
+		for(cont = 0; cont < duracaoTempo - 1; cont++)
 		{
 			
 		if(rand() % 2 == 0) // sortear se vai entrar ou nao nesse loop
@@ -175,7 +174,7 @@ int main()
 			//getch();
 			
 						
-			for(i = 0; i < DevsOcupados && cont < duracaoTempo; i++)//Decrementar tempo da tarefa
+			for(i = 0; i < DevsOcupados && cont < duracaoTempo - 1; i++)//Decrementar tempo da tarefa
 				{
 
 			
@@ -278,10 +277,10 @@ int main()
 			Moldura(17,7,86,28,15,0,201,187,200,188);
 			gotoxy(34,Linha - 2);
 			textcolor(12);
-			printf ("TAREFAS QUE NAO FORAM CONCLUIDAS = %d" , RegFila.Qtde + DevsOcupados);
+			printf ("TAREFAS QUE NAO FORAM CONCLUIDAS = %d | %d | %d" , RegFila.Qtde + DevsOcupados, RegFila.Qtde, DevsOcupados);
 			gotoxy(25,Linha++);
 			textcolor(6);
-			printf("Tarefas que nao foram resolvidas: ");
+			printf("Tarefas que ficaram na fila: ");
 			Linha++;
 			Coluna = 19; 	
 			Exibir(RegFila, Coluna, Linha);
@@ -290,10 +289,10 @@ int main()
 			Linha = 10;
 			gotoxy(34,Linha - 2);
 			textcolor(12);
-			printf ("TAREFAS QUE NAO FORAM CONCLUIDAS = %d" , RegFila.Qtde + DevsOcupados);
+			printf ("TAREFAS QUE NAO FORAM CONCLUIDAS = %d | %d | %d" , RegFila.Qtde + DevsOcupados, RegFila.Qtde, DevsOcupados);
 			gotoxy(15,Linha++);
 			textcolor(14);
-			printf("Tarefas que ficaram na fila: ");
+			printf("Tarefas que nao foram resolvidas: ");
 			Linha++;
 			Coluna = 10; 
 			for(y = 0; y < DevsOcupados; y++)
@@ -318,14 +317,8 @@ int main()
 		
 		
 		getch();
-		InterfaceMenu();
-		//Moldura de realizar outra simulaÃ§Ã£o
-		Moldura(28,11,71,19,15,0,201,187,200,188);
-		gotoxy(31,15);
-		textcolor(6);
-		printf("Deseja realizar outra simulacao? (S/N)");
 		fclose(Ptr); // FALTOU FECHAR 
-	} while(toupper(getche()) == 'S');
+
 	
 			
 	return 0;

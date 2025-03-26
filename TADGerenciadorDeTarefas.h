@@ -49,19 +49,6 @@ int CheckDevs(TpDev RegDev, int limiteDev);
 char BarraCarregamento(TpDev RegDev[]);
 
 
-/*char* BarraCarregamento(int tempo, int contador){
-	int parcela = 20/tempo, i;
-	char barra[21], aux[21];
-	
-	for (i = 0; i < (parcela*contador) ; i++)
-		aux[i] = char(178);
-	aux[i] = '\0';
-		
-	strcpy(barra,aux);
-	barra[i] = '\0';
-	return barra;
-}*/
-
 void BarraCarregamento(int tempo, int contador, int &Coluna, int &Linha) {
     int largura = 20; // Largura da barra de carregamento
     int parcela = largura * contador / tempo; // Calcula a posição atual da barra
@@ -72,7 +59,9 @@ void BarraCarregamento(int tempo, int contador, int &Coluna, int &Linha) {
     printf("[");
     for (int i = 0; i < largura; i++) {
         if (i < parcela) {
-            printf("="); // Parte preenchida da barra
+        	textcolor(32);
+            printf(" ");
+			textcolor(10); // Parte preenchida da barra
         } else {
             printf(" "); // Parte não preenchida da barra
         }
