@@ -1,0 +1,96 @@
+Critico,10,Corrigir bug de login,Joao Silva,2023-10-26
+Importante,5,Implementar funcionalidade de carrinho,Maria Oliveira,2023-10-27
+Melhoria,2,Refatorar codigo de autenticacao,Ana Santos,2023-10-28
+Critico,15,Corrigir falha de seguranca,Pedro Souza,2023-10-29
+Importante,8,Testar integracao com API de pagamento,Carla Rodrigues,2023-10-30
+Melhoria,3,Otimizar desempenho da pagina inicial,Lucas Pereira,2023-10-31
+Critico,12,Corrigir erro de banco de dados,Mariana Costa,2023-11-01
+Importante,7,Revisar codigo da funcionalidade de busca,Bruno Gomes,2023-11-02
+Melhoria,4,Documentar API de produtos,Isabela Ribeiro,2023-11-03
+Critico,20,Corrigir problema de infraestrutura,Rafael Martins,2023-11-04
+Importante,9,Implementar funcionalidade de favoritos,Juliana Almeida,2023-11-05
+Melhoria,5,Otimizar consultas ao banco de dados,Gustavo Barbosa,2023-11-06
+Critico,18,Corrigir bug de renderizacao,Beatriz Castro,2023-11-07
+Importante,6,Testar funcionalidade de checkout,Leonardo Dias,2023-11-08
+Melhoria,2,Atualizar documentacao de instalacao,Camila Ferreira,2023-11-09
+Critico,10,Corrigir problema de performance,Renato Silva,2023-11-10
+Importante,5,Implementar sistema de notificacoes,Maria Souza,2023-11-11
+Melhoria,3,Refatorar codigo de cadastro,Paula Oliveira,2023-11-12
+Critico,12,Resolver problema de autenticacao,Fernando Costa,2023-11-13
+Importante,7,Testar funcionalidade de login,Lucas Almeida,2023-11-14
+Melhoria,6,Refatorar componentes de UI,Monica Pereira,2023-11-15
+Critico,8,Atualizar sistema de segurança,Carla Ferreira,2023-11-16
+Importante,4,Implementar sistema de feedback,Diego Gomes,2023-11-17
+Melhoria,9,Melhorar tempo de resposta das requisicoes,Roberta Souza,2023-11-18
+Critico,14,Corrigir erro de sistema de pagamento,Joana Almeida,2023-11-19
+Importante,6,Revisar configuracoes de servidor,Antonio Barbosa,2023-11-20
+Melhoria,2,Documentar fluxo de usuario,Patricia Costa,2023-11-21
+Critico,10,Resolver falha em carregamento de pagina,Juliana Pereira,2023-11-22
+Importante,8,Testar integracao com sistema de login,Thiago Rodrigues,2023-11-23
+Melhoria,5,Atualizar dependencias do sistema,Claudia Santos,2023-11-24
+Critico,11,Corrigir erro em processo de pagamento,Henrique Gomes,2023-11-25
+Importante,9,Revisar processos de checkout,Andreia Silva,2023-11-26
+Melhoria,4,Refatorar sistema de comentarios,Lilian Souza,2023-11-27
+Critico,13,Corrigir bug de sistema de cadastro,Roberto Oliveira,2023-11-28
+Importante,6,Testar integracao com gateway de pagamento,Marcio Costa,2023-11-29
+Melhoria,7,Refatorar sistema de recomendacoes,Claudia Ferreira,2023-11-30
+Critico,10,Resolver falha de acesso ao banco de dados,Juliana Gomes,2023-12-01
+Importante,5,Implementar notificacoes por email,Lucas Costa,2023-12-02
+Melhoria,3,Otimizar tempo de carregamento de paginas,Adriana Santos,2023-12-03
+Critico,14,Atualizar sistema de autenticação,Joao Almeida,2023-12-04
+Importante,9,Testar nova funcionalidade de pesquisa,Paulo Souza,2023-12-05
+Melhoria,2,Melhorar usabilidade do painel de controle,Vanessa Pereira,2023-12-06
+Critico,11,Corrigir falha no envio de e-mails,Daniela Oliveira,2023-12-07
+Importante,7,Revisar fluxo de pagamento no checkout,Fabio Rodrigues,2023-12-08
+Melhoria,4,Documentar processo de integração,Simone Barbosa,2023-12-09
+Critico,15,Corrigir bug de visualizacao de produto,Mariana Almeida,2023-12-10
+Importante,6,Refatorar sistema de registro de usuario,Ricardo Gomes,2023-12-11
+Melhoria,2,Otimizar fluxo de pagamento,Rafael Costa,2023-12-12
+Critico,9,Resolver problema de carregamento lento,Adriana Almeida,2023-12-13
+Importante,7,Testar sistema de login social,Joana Costa,2023-12-14
+Melhoria,5,Refatorar sistema de notificacoes,Paula Rodrigues,2023-12-15
+Critico,8,Implementar criptografia de senhas,Beatriz Oliveira,2023-12-16
+Importante,6,Revisar processo de login,Lucas Ribeiro,2023-12-17
+Melhoria,3,Refatorar sistema de favoritos,Aline Gomes,2023-12-18
+Critico,12,Atualizar servidor de producao,Roberto Santos,2023-12-19
+Importante,5,Testar integracao com sistema de comentarios,Paula Ferreira,2023-12-20
+Melhoria,7,Refatorar sistema de notificacoes push,Joao Costa,2023-12-21
+Critico,14,Resolver bug em sistema de cadastro,Raquel Pereira,2023-12-22
+Importante,9,Revisar configuracao de sistema de pagamento,Lucas Almeida,2023-12-23
+Melhoria,4,Documentar processos de desenvolvimento,Isabela Pereira,2023-12-24
+Critico,13,Corrigir falha de seguranca no checkout,Simone Oliveira,2023-12-25
+Importante,8,Implementar novo sistema de login,Thiago Barbosa,2023-12-26
+Melhoria,5,Otimizar tempo de resposta das consultas,Bruna Silva,2023-12-27
+Critico,10,Corrigir falha no sistema de pagamento,Leonardo Pereira,2023-12-28
+Importante,6,Testar integracao com API externa,Carla Almeida,2023-12-29
+Melhoria,2,Refatorar sistema de relatorios,Roberta Rodrigues,2023-12-30
+Critico,12,Corrigir erro de banco de dados,Anderson Costa,2023-12-31
+Importante,7,Revisar estrutura de dados do sistema,Luis Oliveira,2024-01-01
+Melhoria,5,Refatorar fluxo de checkout,Aline Pereira,2024-01-02
+Critico,11,Corrigir problema de carregamento de produtos,Carla Costa,2024-01-03
+Importante,8,Testar integracao com API de pagamento,Patricia Rodrigues,2024-01-04
+Melhoria,4,Documentar processo de deploy,Mariana Gomes,2024-01-05
+Critico,9,Implementar autenticação de dois fatores,Daniela Pereira,2024-01-06
+Importante,6,Revisar sistema de cache,Roberta Almeida,2024-01-07
+Melhoria,3,Refatorar sistema de relatórios de vendas,Pedro Costa,2024-01-08
+Critico,10,Resolver problema no envio de mensagens,Luciana Oliveira,2024-01-09
+Importante,5,Testar integracao com sistema de recomendacao,Tiago Pereira,2024-01-10
+Melhoria,6,Otimizar desempenho da API de produtos,Paula Costa,2024-01-11
+Critico,15,Resolver falha na autenticação,Juliana Souza,2024-01-12
+Importante,9,Revisar fluxo de pagamento,Eliane Barbosa,2024-01-13
+Melhoria,4,Refatorar sistema de controle de acesso,Gustavo Pereira,2024-01-14
+Critico,12,Corrigir erro de login social,Isabela Almeida,2024-01-15
+Importante,7,Testar API de envio de mensagens,Luis Costa,2024-01-16
+Melhoria,5,Documentar sistema de pagamentos,Mariana Rodrigues,2024-01-17
+Critico,8,Corrigir falha em autenticação multiusuário,Tiago Almeida,2024-01-18
+Importante,6,Revisar configuracao de servidor de producao,Camila Oliveira,2024-01-19
+Melhoria,2,Otimizar sistema de recomendacoes,Rafael Pereira,2024-01-20
+Critico,10,Implementar backup automatizado do banco de dados,Fernando Almeida,2024-01-21
+Importante,5,Revisar sistema de notificacoes push,Maria Pereira,2024-01-22
+Melhoria,4,Refatorar sistema de alertas,Sandra Costa,2024-01-23
+Critico,13,Corrigir erro de renderizacao em mobile,Ricardo Rodrigues,2024-01-24
+Importante,7,Testar integracao com plataforma de analytics,Camila Santos,2024-01-25
+Melhoria,3,Refatorar sistema de pagamentos recorrentes,Adriana Almeida,2024-01-26
+Critico,10,Implementar sistema de log de erros,Thiago Costa,2024-01-27
+Importante,8,Revisar fluxo de cadastro de novos usuarios,Beatriz Pereira,2024-01-28
+Melhoria,5,Documentar processo de testes automatizados,Gustavo Almeida,2024-01-29
