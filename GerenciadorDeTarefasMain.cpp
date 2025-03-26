@@ -79,7 +79,7 @@ void NomeiaDevs(TpDev RegDev[], int limiteDev)
 {
 	char *nomesDev[10] = {
     "Nathanael", "Vitor", "Felipe", "Willian", "Leandro",
-    "Haroldo", "Silvio Antonio", "João Cezario", "Flavio", "Francisco"
+    "Haroldo", "Silvio Antonio", "JoÃ£o Cezario", "Flavio", "Francisco"
 	};
 	
 	for(int i = 0; i < limiteDev; i++)
@@ -160,7 +160,7 @@ int main()
 							Sleep(500);
 							gotoxy(Coluna,Linha++);
 							textcolor(13);
-							printf("Dev - %s: Prioridade: %s - %s - Tempo Restante: %d\t", RegDev[y].Nome, RegDev[y].Tarefa_Dev.tipo ,RegDev[y].Tarefa_Dev.nomeTarefa, RegDev[y].Tarefa_Dev.tempoConc);
+							printf("Dev - %s: Prioridade: %s - %s - Tempo Restante: %d", RegDev[y].Nome, RegDev[y].Tarefa_Dev.tipo ,RegDev[y].Tarefa_Dev.nomeTarefa, RegDev[y].Tarefa_Dev.tempoConc);
 							BarraCarregamento(RegDev[y].Tarefa_Dev.tempoTotal, RegDev[y].Tarefa_Dev.cont,Coluna,Linha);
 					}
 				}
@@ -286,8 +286,6 @@ int main()
 			getch();
 			InterfaceRelatorio();
 			Linha = 10;
-			//Moldura de tarefas nao concluidas
-			Moldura(8,7,96,28,15,0,201,187,200,188);
 			gotoxy(34,Linha - 2);
 			textcolor(12);
 			printf ("TAREFAS QUE NAO FORAM CONCLUIDAS = %d" , RegFila.Qtde + DevsOcupados);
@@ -319,7 +317,7 @@ int main()
 		
 		getch();
 		InterfaceMenu();
-		//Moldura de realizar outra simulação
+		//Moldura de realizar outra simulaÃ§Ã£o
 		Moldura(28,11,71,19,15,0,201,187,200,188);
 		gotoxy(31,15);
 		textcolor(6);
