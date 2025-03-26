@@ -43,7 +43,7 @@ int main()
 	{
 		TpFila RegFila;
 		TpTarefas RegTarefa;
-		int cont, i, pos, limiteDev;
+		int cont, i, pos, limiteDev, DevsOcupados = 0;
 		int duracaoTempo, Cont_1_Task = 0, Cont_2_Task = 0, Cont_3_Task = 0, Som_1_Task = 0, Som_2_Task = 0, Som_3_Task = 0;
 		float media;
 		Inicializar(RegFila);
@@ -57,30 +57,32 @@ int main()
 		printf("Digite o tempo maximo de simulacao: ");
 		scanf("%d", &duracaoTempo);
 		 
-		for(cont = 0; cont < duracaoTempo;)
+		for(cont = 0; cont < duracaoTempo; cont++)
 		{
 			
-//			if(rand() % 2 == 0) // sortear se vai entrar ou nao nesse loop
-//			{
+		//if(rand() % 2 == 0) // sortear se vai entrar ou nao nesse loop
+		//	{
 				fscanf(Ptr,"%[^,],%d,%[^,],%[^,],%s\n", &RegTarefa.tipo, &RegTarefa.tempoConc, &RegTarefa.nomeTarefa, &RegTarefa.devResp, &RegTarefa.dataIni);				
-				RegTarefa.in_time = cont;
+				
 				Insere(RegFila, RegTarefa); 
-//			}
+		//	}
 			
 			pos = CheckDevs(RegDev, limiteDev);
-			if(pos > -1)//Caso haja Devs disponiveis
+			if(pos != -1)//Caso haja Devs disponiveis
 			{
 				RegDev[pos].Tarefa_Dev = Retirar(RegFila);
-				RegDev[pos].status = 1;	
+				RegTarefa.in_time = cont;
+				RegDev[pos].status = 1;
+				DevsOcupados++;	
 			}
 			
 			printf("\n\nTarefas sendo executadas: \n\n");
-			for(int y = 0; y < limiteDev; y++)
+			for(int y = 0; y < DevsOcupados; y++)
 				{
 				if(RegDev[y].status == 1 && RegDev[y].Tarefa_Dev.tempoConc > 0)
 					{
 							Sleep(500);
-							printf("Dev - %s: %s - Tempo Restante: %d\n", RegDev[y].Nome, RegDev[y].Tarefa_Dev.nomeTarefa, RegDev[y].Tarefa_Dev.tempoConc);
+							printf("Dev - %s: Prioridade: %s %s - Tempo Restante: %d\n", RegDev[y].Nome, RegDev[y].Tarefa_Dev.tipo ,RegDev[y].Tarefa_Dev.nomeTarefa, RegDev[y].Tarefa_Dev.tempoConc);
 					}
 				}
 		
@@ -94,7 +96,7 @@ int main()
 			system("cls");
 			
 						
-			for(i = 0; i < limiteDev && cont < duracaoTempo; i++)//Decrementar tempo da tarefa
+			for(i = 0; i < DevsOcupados && cont < duracaoTempo; i++)//Decrementar tempo da tarefa
 				{
 
 			
@@ -102,10 +104,10 @@ int main()
 					{
 
 					RegDev[i].Tarefa_Dev.tempoConc--;
-					cont++;
 					if(RegDev[i].Tarefa_Dev.tempoConc == 0)
 						{
 							RegDev[i].status = 0;
+							DevsOcupados--;
 							RegDev[i].Tarefa_Dev.Out_time = cont;
 							if(strcmp(RegDev[i].Tarefa_Dev.tipo,"Critico") == 0)
 								{
@@ -131,9 +133,6 @@ int main()
 
 
 				}
-
-
-				
 				
 		}	
 		

@@ -77,9 +77,8 @@ void Insere(TpFila &F, TpTarefas Reg)
 		i = F.Fim;
 		if(F.Qtde == 0)
 		{
-			F.Fim = -1;
-			F.Inicio = 0;
-    		F.FILA[++F.Fim] = Reg;
+
+    		F.FILA[(F.Fim + 1) % MAXFILA] = Reg;
 		} 
 		else 
 		{
@@ -95,7 +94,7 @@ void Insere(TpFila &F, TpTarefas Reg)
 				}
 							
 			}
-			F.FILA[i + 1] = Reg;
+			F.FILA[(i + 1) % MAXFILA] = Reg;
 		}
 		
 		F.Fim = (F.Fim + 1) % MAXFILA;
@@ -106,6 +105,8 @@ void Insere(TpFila &F, TpTarefas Reg)
 TpTarefas Retirar(TpFila &F)
 {
 	TpTarefas Aux;
+	
+	if(F.Qtde > 0){
 	Aux = F.FILA[F.Inicio++];
 	
 	if(F.Inicio == MAXFILA)
@@ -113,6 +114,7 @@ TpTarefas Retirar(TpFila &F)
 	
 	F.Qtde--;
 	return Aux;	
+	}
 }
 
 char FilaVazia(int Qtde)
