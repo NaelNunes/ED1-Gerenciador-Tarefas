@@ -19,11 +19,6 @@ void RelatorioLoop(void)
 	
 }
 
-void Simulacao(TpFila &RegFila, FILE *Ptr)
-{
-	
-}
-
 void NomeiaDevs(TpDev RegDev[], int limiteDev)
 {
 	char *nomesDev[10] = {
@@ -82,7 +77,7 @@ int main()
 				if(RegDev[y].status == 1 && RegDev[y].Tarefa_Dev.tempoConc > 0)
 					{
 							Sleep(500);
-							printf("Dev - %s: Prioridade: %s %s - Tempo Restante: %d\n", RegDev[y].Nome, RegDev[y].Tarefa_Dev.tipo ,RegDev[y].Tarefa_Dev.nomeTarefa, RegDev[y].Tarefa_Dev.tempoConc);
+							printf("Dev - %s: Prioridade: %s - %s - Tempo Restante: %d\n", RegDev[y].Nome, RegDev[y].Tarefa_Dev.tipo ,RegDev[y].Tarefa_Dev.nomeTarefa, RegDev[y].Tarefa_Dev.tempoConc);
 					}
 				}
 		
@@ -137,7 +132,7 @@ int main()
 		}	
 		
 		
-		printf("CONT = %d\n\n", cont);
+		printf("Tarefas Realizadas = %d\n\n", cont);
 			
 	
 		// CASO NAO TENHA TASK SEJA 0 ELE NAO DIVIDE PODE DAR ERRO (ARRUMADO)
