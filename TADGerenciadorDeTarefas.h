@@ -97,6 +97,7 @@ void Insere(TpFila &F, TpTarefas Reg)
     	F.FILA[i + 1] = Reg;
 		if(F.Fim == MAXFILA - 1)
 			F.Fim = -1;
+			
     	F.Fim++;
     	F.Qtde++;
 	}
@@ -105,13 +106,12 @@ void Insere(TpFila &F, TpTarefas Reg)
 TpTarefas Retirar(TpFila &F)
 {
 	TpTarefas Aux;
-	Aux = F.FILA[F.Inicio];
-	if(F.Inicio == MAXFILA - 1)
-		F.Inicio=0;
-	else
-		F.Inicio++;
-	F.Qtde--;
+	Aux = F.FILA[F.Inicio++];
 	
+	if(F.Inicio == MAXFILA)
+		F.Inicio=0;
+	
+	F.Qtde--;
 	return Aux;	
 }
 

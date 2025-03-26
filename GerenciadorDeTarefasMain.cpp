@@ -1,11 +1,13 @@
+// Nathanael Nunes, Felipe Oliveira Barbosa, Vitor Lacerda
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
 #include <ctype.h>
 #include <string.h>
-#include <conio.h>
+#include <conio2.h>
 #include <time.h>
 #include "TADGerenciadorDeTarefas.h"
+
 
 void InterfaceMenu(void)
 {
@@ -25,10 +27,10 @@ void Simulacao(TpFila &RegFila, FILE *Ptr)
 void NomeiaDevs(TpDev RegDev[], int limiteDev)
 {
 	char *nomesDev[10] = {
-        "Nathanael", "Vitor", "Felipe", "Willian", "Leandro",
-        "Haroldo", "Silvio Antonio", "João Cezario", "Flavio", "Francisco"
-    };
-    
+    "Nathanael", "Vitor", "Felipe", "Willian", "Leandro",
+    "Haroldo", "Silvio Antonio", "João Cezario", "Flavio", "Francisco"
+	};
+	
 	for(int i = 0; i < limiteDev; i++)
 	{
 		strcpy(RegDev[i].Nome,nomesDev[i]);
@@ -39,7 +41,7 @@ int main()
 {
 	do
 	{
-		TpFila RegFila;
+		TpFila RegFila, RegTeste;
 		TpTarefas RegTarefa;
 		int cont, i, pos, limiteDev;
 		int duracaoTempo, Cont_1_Task = 0, Cont_2_Task = 0, Cont_3_Task = 0, Som_1_Task = 0, Som_2_Task = 0, Som_3_Task = 0;
@@ -68,17 +70,19 @@ int main()
 			}
 		
 			printf("\n\nTarefas na fila: \n\n");
-			if(!FilaVazia(RegFila.Qtde))
-			{
+			//if(!FilaVazia(RegFila.Qtde))
+//			{
 				Exibir(RegFila);
-			}
+//			}
 			//if(rand() % 2 == 0) // sortear se vai entrar ou nao nesse loop
 			//{
-				fscanf(Ptr,"%[^,],%d,%[^,],%[^,],%s\n", &RegTarefa.tipo, &RegTarefa.tempoConc, &RegTarefa.nomeTarefa, &RegTarefa.devResp, &RegTarefa.dataIni);
-				RegTarefa.in_time = cont;
+				fscanf(Ptr,"%[^,],%d,%[^,],%[^,],%s\n", &RegTarefa.tipo, &RegTarefa.tempoConc, &RegTarefa.nomeTarefa, &RegTarefa.devResp, &RegTarefa.dataIni);				RegTarefa.in_time = cont;
 				Insere(RegFila, RegTarefa); 
+				//Insere(RegTeste, RegTarefa);
+//				Exibir(RegTeste); 
 			//}
-			pos = CheckDevs(RegDev[limiteDev], limiteDev);
+			
+			pos = CheckDevs(RegDev, limiteDev);
 			if(pos != -1)//Caso haja Devs disponiveis
 			{
 				RegDev[pos].Tarefa_Dev = Retirar(RegFila);
