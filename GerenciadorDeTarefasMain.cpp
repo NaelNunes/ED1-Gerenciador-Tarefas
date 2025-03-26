@@ -41,7 +41,7 @@ int main()
 {
 	do
 	{
-		TpFila RegFila, RegTeste;
+		TpFila RegFila;
 		TpTarefas RegTarefa;
 		int cont, i, pos, limiteDev;
 		int duracaoTempo, Cont_1_Task = 0, Cont_2_Task = 0, Cont_3_Task = 0, Som_1_Task = 0, Som_2_Task = 0, Som_3_Task = 0;
@@ -70,17 +70,16 @@ int main()
 			}
 		
 			printf("\n\nTarefas na fila: \n\n");
-			//if(!FilaVazia(RegFila.Qtde))
+//			if(!FilaVazia(RegFila.Qtde))
 //			{
 				Exibir(RegFila);
 //			}
-			//if(rand() % 2 == 0) // sortear se vai entrar ou nao nesse loop
-			//{
-				fscanf(Ptr,"%[^,],%d,%[^,],%[^,],%s\n", &RegTarefa.tipo, &RegTarefa.tempoConc, &RegTarefa.nomeTarefa, &RegTarefa.devResp, &RegTarefa.dataIni);				RegTarefa.in_time = cont;
+//			if(rand() % 2 == 0) // sortear se vai entrar ou nao nesse loop
+//			{
+				fscanf(Ptr,"%[^,],%d,%[^,],%[^,],%s\n", &RegTarefa.tipo, &RegTarefa.tempoConc, &RegTarefa.nomeTarefa, &RegTarefa.devResp, &RegTarefa.dataIni);				
+				RegTarefa.in_time = cont;
 				Insere(RegFila, RegTarefa); 
-				//Insere(RegTeste, RegTarefa);
-//				Exibir(RegTeste); 
-			//}
+//			}
 			
 			pos = CheckDevs(RegDev, limiteDev);
 			if(pos != -1)//Caso haja Devs disponiveis

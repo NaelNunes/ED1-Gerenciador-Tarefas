@@ -75,30 +75,28 @@ void Insere(TpFila &F, TpTarefas Reg)
 	if(F.Qtde != MAXFILA)
 	{
 		i = F.Fim;
-		while(i != F.Inicio && strcmp(F.FILA[i].tipo, Reg.tipo) > 0) // ESTAVA USANDO < PARA COMPARAR STRING BIXAAAAA (ARRUMADO)
+		if(F.Qtde == 0)
 		{
-			if(i == 0)
-			{
-				F.FILA[MAXFILA - 1]= F.FILA[i];
-				i = MAXFILA;
-			}
-			else
-				F.FILA[i + 1] = F.FILA[i];
-			i--;
-		}
-		/*eu não entendi esse i>0
-		Outra coisa ainda nao sei pq,
-		mas não tá fazendo prioridade com primeiro da fila*/
-		if(i == F.Inicio && strcmp(F.FILA[i].tipo, Reg.tipo) > 0)
-		{
-			F.FILA[i + 1] = F.FILA[i];
-			i--;
-		}
-    	F.FILA[i + 1] = Reg;
-		if(F.Fim == MAXFILA - 1)
 			F.Fim = -1;
-			
-    	F.Fim++;
+			F.Inicio = 0;
+    		F.FILA[++F.Fim] = Reg;
+		} 
+		else 
+		{
+			while(i != F.Inicio && strcmp(F.FILA[i].tipo, Reg.tipo) > 0) // ESTAVA USANDO < PARA COMPARAR STRING BIXAAAAA (ARRUMADO)
+			{
+				F.FILA[(i + 1) % MAXFILA] = F.FILA[i];
+				F.FILA[i] = Reg;
+				if(i == 0)
+				{
+					i = MAXFILA - 1;	
+				} else {
+					i--;
+				}
+							
+			}
+		}
+		F.Fim = (F.Fim + 1) % MAXFILA;
     	F.Qtde++;
 	}
 }
