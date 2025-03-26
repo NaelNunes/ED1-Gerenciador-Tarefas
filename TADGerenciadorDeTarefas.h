@@ -38,7 +38,7 @@ struct TpDev{
 
 
 
-//Operações Associadas
+//OperaÃ§Ãµes Associadas
 void Inicializar(TpFila &F);
 void Insere(TpFila &F, TpTarefas Reg);
 TpTarefas Retirar(TpFila &F);
@@ -62,22 +62,23 @@ char BarraCarregamento(TpDev RegDev[]);
 	return barra;
 }*/
 
-void BarraCarregamento(int tempo, int contador) {
+void BarraCarregamento(int tempo, int contador, int &Coluna, int &Linha) {
     int largura = 20; // Largura da barra de carregamento
-    int parcela = largura * contador / tempo; // Calcula a posi��o atual da barra
+    int parcela = largura * contador / tempo; // Calcula a posição atual da barra
 
     // Imprime a barra de carregamento
-    textcolor(14);
+    textcolor(10);
+    gotoxy(Coluna,Linha);
     printf("[");
     for (int i = 0; i < largura; i++) {
         if (i < parcela) {
             printf("="); // Parte preenchida da barra
         } else {
-            printf(" "); // Parte n�o preenchida da barra
+            printf(" "); // Parte não preenchida da barra
         }
     }
-    printf("] %d%%\n\n", contador * 100 / tempo); // Exibe a porcentagem
-    textcolor(15);
+    printf("] %d%%", contador * 100 / tempo); // Exibe a porcentagem
+    Linha++;
 }
 
 
@@ -164,15 +165,17 @@ char FilaCheia(int Qtde)
 }
 
 
-//Esse Exibir é para ir exibindo a fila
-void Exibir(TpFila F)
+//Esse Exibir Ã© para ir exibindo a fila
+void Exibir(TpFila F, int &Coluna, int &Linha)
 {
     int i = F.Inicio;
     int count = F.Qtde;
     
     while(count > 0) 
     {
-        printf("%s \t%d \t%s\n", F.FILA[i].tipo, F.FILA[i].tempoConc, F.FILA[i].nomeTarefa);
+    	gotoxy(Coluna,Linha++);
+		textcolor(4);
+        printf("%s \t%d \t%s", F.FILA[i].tipo, F.FILA[i].tempoConc, F.FILA[i].nomeTarefa);
         Sleep(200);
         i++;
         if (i == MAXFILA) {
@@ -180,4 +183,5 @@ void Exibir(TpFila F)
         }
         count--;
     }
+    
 }
