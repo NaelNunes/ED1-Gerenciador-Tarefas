@@ -67,6 +67,7 @@ void BarraCarregamento(int tempo, int contador) {
     int parcela = largura * contador / tempo; // Calcula a posição atual da barra
 
     // Imprime a barra de carregamento
+    textcolor(14);
     printf("[");
     for (int i = 0; i < largura; i++) {
         if (i < parcela) {
@@ -76,6 +77,7 @@ void BarraCarregamento(int tempo, int contador) {
         }
     }
     printf("] %d%%\n\n", contador * 100 / tempo); // Exibe a porcentagem
+    textcolor(15);
 }
 
 
