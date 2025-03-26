@@ -137,15 +137,17 @@ int main()
 				
 				Insere(RegFila, RegTarefa); 
 			}
-			
-			pos = CheckDevs(RegDev, limiteDev);
-			if(pos != -1)//Caso haja Devs disponiveis
+			if(!FilaVazia(RegFila.Qtde))
 			{
-				RegDev[pos].Tarefa_Dev = Retirar(RegFila);
-				RegTarefa.in_time = cont;
-				RegDev[pos].status = 1;
-				RegDev[pos].Tarefa_Dev.tempoTotal = RegDev[pos].Tarefa_Dev.tempoConc;
-				DevsOcupados++;	
+				pos = CheckDevs(RegDev, limiteDev);
+				if(pos != -1)//Caso haja Devs disponiveis
+				{
+					RegDev[pos].Tarefa_Dev = Retirar(RegFila);
+					RegTarefa.in_time = cont;
+					RegDev[pos].status = 1;
+					RegDev[pos].Tarefa_Dev.tempoTotal = RegDev[pos].Tarefa_Dev.tempoConc;
+					DevsOcupados++;	
+				}	
 			}
 			InterfaceMenu();
 			gotoxy(8,8);
