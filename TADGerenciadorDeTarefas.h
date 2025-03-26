@@ -86,7 +86,7 @@ void Insere(TpFila &F, TpTarefas Reg)
 			while(i != F.Inicio && strcmp(F.FILA[i].tipo, Reg.tipo) > 0) // ESTAVA USANDO < PARA COMPARAR STRING BIXAAAAA (ARRUMADO)
 			{
 				F.FILA[(i + 1) % MAXFILA] = F.FILA[i];
-				F.FILA[i] = Reg;
+				
 				if(i == 0)
 				{
 					i = MAXFILA - 1;	
@@ -95,7 +95,9 @@ void Insere(TpFila &F, TpTarefas Reg)
 				}
 							
 			}
+			F.FILA[i + 1] = Reg;
 		}
+		
 		F.Fim = (F.Fim + 1) % MAXFILA;
     	F.Qtde++;
 	}

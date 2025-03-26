@@ -57,23 +57,9 @@ int main()
 		printf("Digite o tempo maximo de simulacao: ");
 		scanf("%d", &duracaoTempo);
 		 
-		for(cont = 0; cont < duracaoTempo; cont++)
+		for(cont = 0; cont < duracaoTempo;)
 		{
-			printf("\n\nTarefas sendo executadas: \n\n");
-			for(int y = 0; y < limiteDev; y++)
-			{
-				if(RegDev[y].status == 1 && RegDev[y].Tarefa_Dev.tempoConc > 0)
-				{
-						Sleep(500);
-						printf("Dev - %s: %s - Tempo Restante: %d\n", RegDev[y].Nome, RegDev[y].Tarefa_Dev.nomeTarefa, RegDev[y].Tarefa_Dev.tempoConc);
-				}
-			}
-		
-			printf("\n\nTarefas na fila: \n\n");
-//			if(!FilaVazia(RegFila.Qtde))
-//			{
-				Exibir(RegFila);
-//			}
+			
 //			if(rand() % 2 == 0) // sortear se vai entrar ou nao nesse loop
 //			{
 				fscanf(Ptr,"%[^,],%d,%[^,],%[^,],%s\n", &RegTarefa.tipo, &RegTarefa.tempoConc, &RegTarefa.nomeTarefa, &RegTarefa.devResp, &RegTarefa.dataIni);				
@@ -82,19 +68,41 @@ int main()
 //			}
 			
 			pos = CheckDevs(RegDev, limiteDev);
-			if(pos != -1)//Caso haja Devs disponiveis
+			if(pos > -1)//Caso haja Devs disponiveis
 			{
 				RegDev[pos].Tarefa_Dev = Retirar(RegFila);
 				RegDev[pos].status = 1;	
 			}
-						
-			for(i = 0; i < limiteDev; i++)//Decrementar tempo da tarefa
+			
+			printf("\n\nTarefas sendo executadas: \n\n");
+			for(int y = 0; y < limiteDev; y++)
 				{
+				if(RegDev[y].status == 1 && RegDev[y].Tarefa_Dev.tempoConc > 0)
+					{
+							Sleep(500);
+							printf("Dev - %s: %s - Tempo Restante: %d\n", RegDev[y].Nome, RegDev[y].Tarefa_Dev.nomeTarefa, RegDev[y].Tarefa_Dev.tempoConc);
+					}
+				}
+		
+			printf("\n\nTarefas na fila: \n\n");
+		//	if(!FilaVazia(RegFila.Qtde))
+		//		{
+					Exibir(RegFila);
+		//		}
+		
+			getch();
+			system("cls");
+			
+						
+			for(i = 0; i < limiteDev && cont < duracaoTempo; i++)//Decrementar tempo da tarefa
+				{
+
 			
 				if(RegDev[i].status == 1)
-				{
-					
+					{
+
 					RegDev[i].Tarefa_Dev.tempoConc--;
+					cont++;
 					if(RegDev[i].Tarefa_Dev.tempoConc == 0)
 						{
 							RegDev[i].status = 0;
@@ -118,15 +126,19 @@ int main()
 								}
 							
 						}
+					
 					}
+
+
 				}
-				getch();
-				system("cls");
+
+
+				
 				
 		}	
 		
 		
-		
+		printf("CONT = %d\n\n", cont);
 			
 	
 		// CASO NAO TENHA TASK SEJA 0 ELE NAO DIVIDE PODE DAR ERRO (ARRUMADO)
