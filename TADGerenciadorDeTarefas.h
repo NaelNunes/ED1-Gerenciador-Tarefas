@@ -119,7 +119,7 @@ void Insere(TpFila &F, TpTarefas Reg)
 		} 
 		else 
 		{
-			while(i != F.Inicio && strcmp(F.FILA[i].tipo, Reg.tipo) > 0) // ESTAVA USANDO < PARA COMPARAR STRING BIXAAAAA (ARRUMADO)
+			while(strcmp(F.FILA[i].tipo, Reg.tipo) > 0) // ESTAVA USANDO < PARA COMPARAR STRING BIXAAAAA (ARRUMADO)
 			{
 				F.FILA[(i + 1) % MAXFILA] = F.FILA[i];
 				

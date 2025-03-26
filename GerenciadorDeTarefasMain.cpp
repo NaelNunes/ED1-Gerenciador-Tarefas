@@ -55,7 +55,7 @@ void InterfaceMenu(void)
 	Moldura(1,5,106,30,0,1,204,185,200,188); 
 	textcolor(15);
 	gotoxy(38,3);
-	printf("### TITULO DO TRABALHO ###");//Decidir ainda o nome
+	printf("### GERENCIADOR DE TAREFAS ###");//Decidir ainda o nome
 }
 
 void InterfaceRelatorio(void)
