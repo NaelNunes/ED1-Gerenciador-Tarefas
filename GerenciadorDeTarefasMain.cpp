@@ -19,6 +19,11 @@ void RelatorioLoop(void)
 	
 }
 
+void Simulacao(TpFila &RegFila, FILE *Ptr)
+{
+	
+}
+
 void NomeiaDevs(TpDev RegDev[], int limiteDev)
 {
 	char *nomesDev[10] = {
@@ -68,6 +73,7 @@ int main()
 				RegDev[pos].Tarefa_Dev = Retirar(RegFila);
 				RegTarefa.in_time = cont;
 				RegDev[pos].status = 1;
+				RegDev[pos].Tarefa_Dev.tempoTotal = RegDev[pos].Tarefa_Dev.tempoConc;
 				DevsOcupados++;	
 			}
 			
@@ -77,7 +83,8 @@ int main()
 				if(RegDev[y].status == 1 && RegDev[y].Tarefa_Dev.tempoConc > 0)
 					{
 							Sleep(500);
-							printf("Dev - %s: Prioridade: %s - %s - Tempo Restante: %d\n", RegDev[y].Nome, RegDev[y].Tarefa_Dev.tipo ,RegDev[y].Tarefa_Dev.nomeTarefa, RegDev[y].Tarefa_Dev.tempoConc);
+							printf("Dev - %s: Prioridade: %s - %s - Tempo Restante: %d\t", RegDev[y].Nome, RegDev[y].Tarefa_Dev.tipo ,RegDev[y].Tarefa_Dev.nomeTarefa, RegDev[y].Tarefa_Dev.tempoConc);
+							BarraCarregamento(RegDev[y].Tarefa_Dev.tempoTotal, RegDev[y].Tarefa_Dev.cont);
 					}
 				}
 		
@@ -99,6 +106,7 @@ int main()
 					{
 
 					RegDev[i].Tarefa_Dev.tempoConc--;
+					RegDev[i].Tarefa_Dev.cont++;
 					if(RegDev[i].Tarefa_Dev.tempoConc == 0)
 						{
 							RegDev[i].status = 0;
@@ -107,19 +115,19 @@ int main()
 							if(strcmp(RegDev[i].Tarefa_Dev.tipo,"Critico") == 0)
 								{
 									Cont_1_Task++;
-									Som_1_Task += (RegDev[i].Tarefa_Dev.Out_time - RegDev[i].Tarefa_Dev.in_time);
+									Som_1_Task += RegDev[i].Tarefa_Dev.tempoTotal;
 								}
 							
 							else if(strcmp(RegDev[i].Tarefa_Dev.tipo,"Importante") == 0)
 								{
 									Cont_2_Task++;
-									Som_2_Task += (RegDev[i].Tarefa_Dev.Out_time - RegDev[i].Tarefa_Dev.in_time);
+									Som_2_Task += RegDev[i].Tarefa_Dev.tempoTotal;
 								}
 							
 							else
 								{
 									Cont_3_Task++;
-									Som_3_Task += (RegDev[i].Tarefa_Dev.Out_time - RegDev[i].Tarefa_Dev.in_time);
+									Som_3_Task += RegDev[i].Tarefa_Dev.tempoTotal;
 								}
 							
 						}
@@ -132,28 +140,35 @@ int main()
 		}	
 		
 		
-		printf("Tarefas Realizadas = %d\n\n", cont);
+		printf("CONT = %d\n\n", cont);
 			
 	
 		// CASO NAO TENHA TASK SEJA 0 ELE NAO DIVIDE PODE DAR ERRO (ARRUMADO)
 		if (Cont_1_Task > 0) {
+			printf("Tarefas Critico Completadas = %d\n", Cont_1_Task);
     		printf("Tempo medio das Tarefas Critico = %.2f\n", (float)Som_1_Task / Cont_1_Task);
+    		
 		} else {
     		printf("Nenhuma tarefa Critico foi realizada.\n");
 		}
 
 		if (Cont_2_Task > 0) {
+			printf("------------------------------------------------------\n");
+			printf("Tarefas Importante Completadas = %d\n", Cont_2_Task);
     		printf("Tempo medio das Tarefas Importante = %.2f\n", (float)Som_2_Task / Cont_2_Task);
 		} else {
     		printf("Nenhuma tarefa Importante foi realizada.\n");
 		}	
 
 		if (Cont_3_Task > 0) {
+			printf("------------------------------------------------------\n");
+			printf("Tarefas Melhoria Completadas = %d\n", Cont_3_Task);
     		printf("Tempo medio das Tarefas Melhoria = %.2f\n", (float)Som_3_Task / Cont_3_Task);
 		} else {
     		printf("Nenhuma tarefa Melhoria foi realizada.\n");
 		}
 		
+		printf ("\nTarefas que nao foram concluidas = %d\n\n" , RegFila.Qtde + DevsOcupados);
 		
 		printf("Deseja realizar outra simulacao? (S/N)");
 		fclose(Ptr); // FALTOU FECHAR 

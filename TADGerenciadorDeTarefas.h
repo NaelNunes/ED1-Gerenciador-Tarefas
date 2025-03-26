@@ -6,7 +6,9 @@ struct TpTarefas{
 	char nomeTarefa[50]; // Nome da tarefa
 	char devResp[20]; // Desenvolvedor Responsavel
 	char dataIni[11]; // Data do inicio
-	int in_time, Out_time;
+	int in_time, Out_time; 
+	int cont = 0;
+	int tempoTotal;
 };
 
 struct TpFila{
@@ -44,6 +46,38 @@ char FilaVazia(int Qtde);
 char FilaCheia(int Qtde);
 void Exibir(TpFila F);
 int CheckDevs(TpDev RegDev, int limiteDev);
+char BarraCarregamento(TpDev RegDev[]);
+
+
+/*char* BarraCarregamento(int tempo, int contador){
+	int parcela = 20/tempo, i;
+	char barra[21], aux[21];
+	
+	for (i = 0; i < (parcela*contador) ; i++)
+		aux[i] = char(178);
+	aux[i] = '\0';
+		
+	strcpy(barra,aux);
+	barra[i] = '\0';
+	return barra;
+}*/
+
+void BarraCarregamento(int tempo, int contador) {
+    int largura = 20; // Largura da barra de carregamento
+    int parcela = largura * contador / tempo; // Calcula a posição atual da barra
+
+    // Imprime a barra de carregamento
+    printf("[");
+    for (int i = 0; i < largura; i++) {
+        if (i < parcela) {
+            printf("="); // Parte preenchida da barra
+        } else {
+            printf(" "); // Parte não preenchida da barra
+        }
+    }
+    printf("] %d%%\n\n", contador * 100 / tempo); // Exibe a porcentagem
+}
+
 
 
 
